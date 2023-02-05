@@ -156,7 +156,7 @@
             if (!isRequired(nic)) {
                 showError(nic, 'NIC cannot be blank.');
             } else if (!isBetween(nic.length, min, max)) {
-                showError(nic, `Username must be between ${min} and ${max} characters.`)
+                showError(nic, `NIC number must be between ${min} and ${max} characters.`)
             } else {
                 showSuccess(nic);
                 valid = true;
@@ -196,7 +196,7 @@
 
         const checkDob = () => {
             let valid = false;
-            // check confirm password
+
             const dob = dob.value.trim();
 
 
@@ -210,15 +210,61 @@
             return valid;
         };
 
-        const isEmailValid = (email) => {
-            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
+        const checkReligions = () => {
+            let valid = false;
+
+            const religions = religions.value.trim();
+
+
+            if (!isRequired(religions)) {
+                showError(religions, 'Religions cannot be blank.');
+            } else {
+                showSuccess(religions);
+                valid = true;
+            }
+
+            return valid;
         };
 
-        const isPasswordSecure = (password) => {
-            const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-            return re.test(password);
+
+
+        const checkPhone = () => {
+
+            let valid = false;
+
+            const min = 10,
+                max = 10;
+
+            const phone_no = phone_no.value.trim();
+
+            if (!isRequired(phone_no)) {
+                showError(nic, 'Phone number cannot be blank.');
+            } else if (!isBetween(phone_no.length, min, max)) {
+                showError(nic, `Phone number must be between ${min} and ${max} characters.`)
+            } else {
+                showSuccess(nic);
+                valid = true;
+            }
+            return valid;
         };
+
+        const checkDateOfRegistered = () => {
+            let valid = false;
+
+            const date_of_registered = date_of_registered.value.trim();
+
+
+            if (!isRequired(date_of_registered)) {
+                showError(date_of_registered, 'Date of Registered cannot be blank.');
+            } else {
+                showSuccess(date_of_registered);
+                valid = true;
+            }
+
+            return valid;
+        };
+
+
 
         const isRequired = value => value === '' ? false : true;
         const isBetween = (length, min, max) => length < min || length > max ? false : true;
@@ -255,7 +301,7 @@
             e.preventDefault();
 
             // validate fields
-            let isUsernameValid = checkUsername(),
+            let isCheckNic = checkNic(),
                 isEmailValid = checkEmail(),
                 isPasswordValid = checkPassword(),
                 isConfirmPasswordValid = checkConfirmPassword();
