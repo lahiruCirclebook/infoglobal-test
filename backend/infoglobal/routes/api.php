@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::group(['prefix' => '/v1'], function () {
 
     //Auth Check
     Route::get('/auth_alive', [AuthController::class, 'authAlive']);
+
+    //add customer
+    Route::post('/customer', [CustomerController::class, 'addCustomer']);
 });
 
 
