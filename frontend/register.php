@@ -36,7 +36,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5 text-center mx-auto">
                         <h1 style="color: black;" class="mb-2 mt-5">Welcome Back!</h1>
-                        <p class="text-lead text-black">Login Your Account.</p>
+                        <p class="text-lead text-black">Register to the System</p>
                     </div>
                 </div>
             </div>
