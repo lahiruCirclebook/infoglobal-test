@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="card-body">
-                            <form id="customer" class="form">
+                            <form id="customer">
                                 <div class="mb-3 form-field error success">
                                     <label for="nic">NIC:</label>
                                     <input type="text" class="form-control" placeholder="National Identity card Number" name="nic" id="nic" isRequired>
