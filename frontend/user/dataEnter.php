@@ -137,74 +137,73 @@
         const address = document.querySelector('#address');
         const dob = document.querySelector('#dob');
 
+        const religions = document.querySelector('#religions');
+        const phone_no = document.querySelector('#phone_no');
+        const date_of_registered = document.querySelector('#date_of_registered');
+
         const form = document.querySelector('#add_details');
 
 
-        const checkUsername = () => {
+        const checkNic = () => {
 
             let valid = false;
 
-            const min = 3,
-                max = 25;
+            const min = 10,
+                max = 10;
 
-            const username = usernameEl.value.trim();
+            const nic = nic.value.trim();
 
-            if (!isRequired(username)) {
-                showError(usernameEl, 'Username cannot be blank.');
-            } else if (!isBetween(username.length, min, max)) {
-                showError(usernameEl, `Username must be between ${min} and ${max} characters.`)
+            if (!isRequired(nic)) {
+                showError(nic, 'NIC cannot be blank.');
+            } else if (!isBetween(nic.length, min, max)) {
+                showError(nic, `Username must be between ${min} and ${max} characters.`)
             } else {
-                showSuccess(usernameEl);
+                showSuccess(nic);
                 valid = true;
             }
             return valid;
         };
 
 
-        const checkEmail = () => {
+        const checkFullName = () => {
             let valid = false;
-            const email = emailEl.value.trim();
-            if (!isRequired(email)) {
-                showError(emailEl, 'Email cannot be blank.');
-            } else if (!isEmailValid(email)) {
-                showError(emailEl, 'Email is not valid.')
+            const full_name = full_name.value.trim();
+            if (!isRequired(full_name)) {
+                showError(full_name, 'Full Name cannot be blank.');
             } else {
-                showSuccess(emailEl);
+                showSuccess(full_name);
                 valid = true;
             }
             return valid;
         };
 
-        const checkPassword = () => {
+
+        const checkAddress = () => {
             let valid = false;
 
 
-            const password = passwordEl.value.trim();
+            const address = address.value.trim();
 
-            if (!isRequired(password)) {
-                showError(passwordEl, 'Password cannot be blank.');
-            } else if (!isPasswordSecure(password)) {
-                showError(passwordEl, 'Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+            if (!isRequired(address)) {
+                showError(address, 'Address cannot be blank.');
             } else {
-                showSuccess(passwordEl);
+                showSuccess(address);
                 valid = true;
             }
 
             return valid;
         };
 
-        const checkConfirmPassword = () => {
+        const checkDob = () => {
             let valid = false;
             // check confirm password
-            const confirmPassword = confirmPasswordEl.value.trim();
-            const password = passwordEl.value.trim();
+            const dob = dob.value.trim();
 
-            if (!isRequired(confirmPassword)) {
-                showError(confirmPasswordEl, 'Please enter the password again');
-            } else if (password !== confirmPassword) {
-                showError(confirmPasswordEl, 'The password does not match');
+
+            if (!isRequired(dob)) {
+                showError(dob, 'Dob cannot be blank.');
             } else {
-                showSuccess(confirmPasswordEl);
+                showSuccess(dob);
                 valid = true;
             }
 
