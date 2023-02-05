@@ -76,40 +76,47 @@
     <div class="container">
         <div class="row mt-lg-n10 mt-md-n11 mt-n10">
             <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
-                <div class="card z-index-0">
+                <div class="card z-index-0" style="width:120%">
                     <div class="card-header text-center pt-4">
                         <h5>Enter Your Details</h5>
                     </div>
                     <div class="card-body">
                         <form id="customer" class="form">
-                            <div class="mb-3 form-field">
-                                <input type="text" class="form-control" placeholder="National Identity card Number" name="nic" id="nic">
+                            <div class="mb-3 form-field error success">
+                                <label for="nic">NIC:</label>
+                                <input type="text" class="form-control" placeholder="National Identity card Number" name="nic" id="nic" isRequired>
                                 <small></small>
                             </div>
-                            <div class="mb-3 form-field">
-                                <textarea class="form-control" type="text" name="full_name" cols="10" rows="2" placeholder="Full Name" id="full_name"></textarea>
+                            <div class="mb-3 form-field error success">
+                                <label for="full_name">Full Name:</label>
+                                <textarea class="form-control" type="text" name="full_name" cols="10" rows="2" placeholder="Full Name" id="full_name" isRequired></textarea>
                                 <small></small>
                             </div>
-                            <div class="mb-3 form-field">
-                                <textarea class="form-control" type="text" name="address" cols="10" rows="2" placeholder="Address" id="address"></textarea>
-                                <small></small>
-                            </div>
-
-                            <div class="mb-3 form-field">
-                                <input type="date" class="form-control" placeholder="Date Of Birth" name="dob" id="dob">
-                                <small></small>
-                            </div>
-                            <div class="mb-3 form-field">
-                                <input type="text" class="form-control" placeholder="Religions" name="religions" id="religions">
-                                <small></small>
-                            </div>
-                            <div class="mb-3 form-field">
-                                <input type="text" class="form-control" placeholder="Phone Number" name="phone_no" id="phone_no">
+                            <div class="mb-3 form-field error success">
+                                <label for="address">Address:</label>
+                                <textarea class="form-control" type="text" name="address" cols="10" rows="2" placeholder="Address" id="address" isRequired></textarea>
                                 <small></small>
                             </div>
 
-                            <div class="mb-3 form-field">
-                                <input type="date" class="form-control" placeholder="Date Of Register" name="date_of_registered" id="date_of_registered">
+                            <div class="mb-3 form-field error success">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" class="form-control" placeholder="Date Of Birth" name="dob" id="dob" isRequired>
+                                <small></small>
+                            </div>
+                            <div class="mb-3 form-field error success">
+                                <label for="religions">Religions:</label>
+                                <input type="text" class="form-control" placeholder="Religions" name="religions" id="religions" isRequired>
+                                <small></small>
+                            </div>
+                            <div class="mb-3 form-field error success">
+                                <label for="phone_no">Phone No:</label>
+                                <input type="text" class="form-control" placeholder="Phone Number" name="phone_no" id="phone_no" isRequired>
+                                <small></small>
+                            </div>
+
+                            <div class="mb-3 form-field error success">
+                                <label for="date_of_registered">Date of Register:</label>
+                                <input type="date" class="form-control" placeholder="Date Of Register" name="date_of_registered" id="date_of_registered" isRequired>
                                 <small></small>
                             </div>
 
@@ -117,9 +124,7 @@
 
                             <div class="text-center form-field">
                                 <button type="submit" id="add_details" class="btn btn-dark w-100 my-4 mb-2">Add Details</button>
-                                <center>
-                                    <button href="" class="btn btn-danger w-100 my-2 mb-2">Cancel</button>
-                                </center>
+
                             </div>
 
 
@@ -302,14 +307,20 @@
 
             // validate fields
             let isCheckNic = checkNic(),
-                isEmailValid = checkEmail(),
-                isPasswordValid = checkPassword(),
-                isConfirmPasswordValid = checkConfirmPassword();
+                isCheckFullName = checkFullName(),
+                isCheckAddress = checkAddress(),
+                isCheckDob = checkDob(),
+                isCheckReligions = checkReligions(),
+                isCheckPhone = checkPhone(),
+                isCheckDateOfRegistered = checkDateOfRegistered();
 
-            let isFormValid = isUsernameValid &&
-                isEmailValid &&
-                isPasswordValid &&
-                isConfirmPasswordValid;
+            let isFormValid = isCheckNic &&
+                isCheckFullName &&
+                isCheckAddress &&
+                isCheckDob &&
+                isCheckReligions &&
+                isCheckPhone &&
+                isCheckDateOfRegistered;
 
             // submit to the server if the form is valid
             if (isFormValid) {
@@ -334,17 +345,26 @@
 
         form.addEventListener('input', debounce(function(e) {
             switch (e.target.id) {
-                case 'username':
-                    checkUsername();
+                case 'nic':
+                    checkNic();
                     break;
-                case 'email':
-                    checkEmail();
+                case 'full_name':
+                    checkFullName();
                     break;
-                case 'password':
-                    checkPassword();
+                case 'address':
+                    checkAddress();
                     break;
-                case 'confirm-password':
-                    checkConfirmPassword();
+                case 'dob':
+                    checkDob();
+                    break;
+                case 'religions':
+                    checkReligions();
+                    break;
+                case 'phone_no':
+                    checkPhone();
+                    break;
+                case 'date_of_registered':
+                    checkDateOfRegistered();
                     break;
             }
         }));
