@@ -77,10 +77,10 @@
         </div>
     </section>
 
-    <script src="assets/js/plugins/jquery.js"></script>
-    <script src="assets/js/plugins/toastr.min.js"></script>
-    <script src="assets/js/custom/dashboard-client.js"></script>
-    <script src="assets/js/custom/customer.js"></script>
+    <script src="../assets/js/plugins/jquery.js"></script>
+    <script src="../assets/js/plugins/toastr.min.js"></script>
+    <script src="../assets/js/custom/dashboard-client.js"></script>
+    <script src="../assets/js/custom/customer.js"></script>
 
 </body>
 
