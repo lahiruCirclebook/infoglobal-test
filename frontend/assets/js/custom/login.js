@@ -19,7 +19,7 @@ $(document).on("submit","#login",function (e){
                 
                 DashboardHelper.setAccessToken(response.token);
                 toastr.info(response.message, "info", DashboardHelper.toastOption());
-                window.location.href = "user/dataEnter.php";
+                window.location.href = "dataEnter.php";
             }
           
         })
