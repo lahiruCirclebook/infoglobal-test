@@ -12,7 +12,6 @@ use Exception;
 
 class CustomerController extends Controller
 {
-
     //add customer
     public function addCustomer(Request $request)
     {
@@ -65,6 +64,24 @@ class CustomerController extends Controller
             }
             return response()->json(['status' => false, 'message' => 'customer add failed'])->setStatusCode(400);
         } catch (Exception $exception) {
+            return response()->json(['status' => false, 'message' => 'public.internal_server_error'])->setStatusCode(500);
+        }
+    }
+
+
+    public function getCustomer(Request $request)
+    {
+        try {
+
+            $customer = Customer::all();
+
+
+            if (!isset($customer) && empty($customer)) {
+                return response()->json(['status' => false, 'message' => "data not found"])->setStatusCode(400);
+            }
+
+            return response()->json(['status' => true, 'message' => 'customer get success', 'customer' => $customer])->setStatusCode(200);
+        } catch (\Exception $exception) {
             return response()->json(['status' => false, 'message' => 'public.internal_server_error'])->setStatusCode(500);
         }
     }

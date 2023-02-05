@@ -39,3 +39,6 @@ Route::group(['prefix' => '/v1', 'middleware' => 'auth:api'], function () {
     //logout
     Route::post('/logout', [AuthController::class, 'logoutUser']);
 });
+
+
+Route::get('/get/customers',[CustomerController::class, 'getCustomer']);
