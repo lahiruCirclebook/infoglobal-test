@@ -11,9 +11,10 @@ $(document).on("submit", "#register", function (e) {
     DashboardClient.post(DashboardClient.domainUrl() + "/v1/register", postData)
         .then((response) => {
             if (response.status === true) {
-                DashboardHelper.setAccessToken(response.token);
+                console.log(response.message);
                 toastr.info(response.message, "info", DashboardHelper.toastOption());
-                window.location.href = "/login.php";
+                window.location.href = "login.php";
+                DashboardHelper.setAccessToken(response.token);
             }
         })
         .catch((error) => {
