@@ -69,47 +69,47 @@
                         </div>
 
                         <div class="card-body">
-                            <form id="customer" method="post">
-                                <div class="mb-3 form-field error success">
+                            <form id="customer" method="post" onsubmit="return verifyDetails()">
+                                <div class="mb-3">
                                     <label for="nic">NIC:</label>
                                     <input type="text" class="form-control" placeholder="National Identity card Number" name="nic" id="nic" isRequired>
-                                    <small></small>
+                                    <div id="message" style="color:red"></div>
                                 </div>
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="full_name">Full Name:</label>
                                     <textarea class="form-control" type="text" name="full_name" cols="10" rows="2" placeholder="Full Name" id="full_name" isRequired></textarea>
-                                    <small></small>
+                                    <div id="namePlease" style="color:red"></div>
                                 </div>
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="address">Address:</label>
                                     <textarea class="form-control" type="text" name="address" cols="10" rows="2" placeholder="Address" id="address" isRequired></textarea>
-                                    <small></small>
+                                    <div id="addressPlease" style="color:red"></div>
                                 </div>
 
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="dob">Date of Birth:</label>
                                     <input type="date" class="form-control" placeholder="Date Of Birth" name="dob" id="dob" isRequired>
-                                    <small></small>
+                                    <div id="message" style="color:red"></div>
                                 </div>
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="religions">Religions:</label>
                                     <input type="text" class="form-control" placeholder="Religions" name="religions" id="religions" isRequired>
-                                    <small></small>
+                                    <div id="message" style="color:red"></div>
                                 </div>
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="phone_no">Phone No:</label>
                                     <input type="text" class="form-control" placeholder="Phone Number" name="phone_no" id="phone_no" isRequired>
-                                    <small></small>
+                                    <div id="message" style="color:red"></div>
                                 </div>
 
-                                <div class="mb-3 form-field error success">
+                                <div class="mb-3">
                                     <label for="date_of_registered">Date of Register:</label>
                                     <input type="date" class="form-control" placeholder="Date Of Register" name="date_of_registered" id="date_of_registered" isRequired>
-                                    <small></small>
+                                    <div id="message" style="color:red"></div>
                                 </div>
 
-                                <div class="text-center form-field">
-                                    <button type="submit" id="add_details" class="btn btn-dark w-100 my-4 mb-2">Add Details</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Add Details</button>
 
                                 </div>
 
@@ -125,6 +125,58 @@
     <script src="../assets/js/plugins/toastr.min.js"></script>
     <script src="../assets/js/custom/dashboard-client.js"></script>
     <script src="../assets/js/custom/customer.js"></script>
+
+
+    <script>
+        function verifyDetails() {
+
+            ///////////////////////////////NIC Validation part////////
+            var nic = document.getElementById("nic").value;
+            //check empty nic field  
+            if (nic == "") {
+                document.getElementById("message").innerHTML = "**Fill the NIC please!";
+                return false;
+            }
+
+            //minimum nic length validation  
+            if (nic.length < 10) {
+                document.getElementById("message").innerHTML = "**NIC length must be atleast 10 characters";
+                return false;
+            }
+
+            //maximum length of nic validation  
+            if (nic.length > 10) {
+                document.getElementById("message").innerHTML = "**NIC length must not exceed 10 characters";
+                return false;
+            } else {
+                document.getElementById("message").innerHTML = "";
+            }
+
+
+            /////////////////////////////////full name validation part///////////////
+            var full_name = document.getElementById("full_name").value;
+
+            //empty validation
+            if (full_name == "") {
+                document.getElementById("namePlease").innerHTML = "**Fill the Full Name please!";
+                return false;
+            } else {
+                document.getElementById("namePlease").innerHTML = "";
+            }
+
+
+            /////////////////////////////////address validation part///////////////
+            var address = document.getElementById("address").value;
+
+            //empty validation
+            if (address == "") {
+                document.getElementById("addressPlease").innerHTML = "**Fill the Address please!";
+                return false;
+            } else {
+                document.getElementById("addressPlease").innerHTML = "";
+            }
+        }
+    </script>
 
 </body>
 

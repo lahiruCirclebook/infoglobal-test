@@ -12,7 +12,7 @@ $(document).on("submit", "#register", function (e) {
         .then((response) => {
             if (response.status === true) {
                 console.log(response.message);
-                toastr.info(response.message, "info", DashboardHelper.toastOption());
+                toastr.success(response.message, "success", DashboardHelper.toastOption());
                 window.location.href = "login.php";
                 DashboardHelper.setAccessToken(response.token);
             }

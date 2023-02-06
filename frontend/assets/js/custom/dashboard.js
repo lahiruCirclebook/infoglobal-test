@@ -111,7 +111,7 @@ function Dashboard() {
         DashboardClient.delete(DashboardClient.domainUrl() + "/delete/customer/" + id)
             .then((response) => {
                 if (response.status === true) {
-                    toastr.info(response.message, "info", DashboardHelper.toastOption());
+                    toastr.success(response.message, "success", DashboardHelper.toastOption());
                   
                     window.location.reload();
                 }

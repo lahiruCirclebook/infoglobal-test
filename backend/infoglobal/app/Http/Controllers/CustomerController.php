@@ -24,14 +24,18 @@ class CustomerController extends Controller
     public function addCustomer(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nic' => 'required|uniq|max:10',
+            'nic' => 'required|unique:posts|max:10',
             'full_name' => 'required',
             'address' => 'required',
             'dob' => 'required',
             'religions' => 'required',
-            'phone_no' => 'required|uniq|max:10',
+            'phone_no' => 'required|unique:posts|max:10',
             'date_of_registered' => 'required',
+        ], [
+            'nic.unique:posts' => 'This Customer Already Exists!',
+            'phone_no.unique:posts' => 'This Customer Already Exists!!'
         ]);
+
         if ($validator->fails()) {
             $error = $validator->errors()->first();
             return response()->json(['status' => false, 'message' => $error])->setStatusCode(400);
