@@ -89,23 +89,23 @@
                                 <div class="mb-3">
                                     <label for="dob">Date of Birth:</label>
                                     <input type="date" class="form-control" placeholder="Date Of Birth" name="dob" id="dob" isRequired>
-                                    <div id="message" style="color:red"></div>
+                                    <div id="dobPlease" style="color:red"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="religions">Religions:</label>
                                     <input type="text" class="form-control" placeholder="Religions" name="religions" id="religions" isRequired>
-                                    <div id="message" style="color:red"></div>
+                                    <div id="religionsPlease" style="color:red"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone_no">Phone No:</label>
                                     <input type="text" class="form-control" placeholder="Phone Number" name="phone_no" id="phone_no" isRequired>
-                                    <div id="message" style="color:red"></div>
+                                    <div id="phonePlease" style="color:red"></div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="date_of_registered">Date of Register:</label>
                                     <input type="date" class="form-control" placeholder="Date Of Register" name="date_of_registered" id="date_of_registered" isRequired>
-                                    <div id="message" style="color:red"></div>
+                                    <div id="datePlease" style="color:red"></div>
                                 </div>
 
                                 <div class="text-center">
@@ -174,6 +174,72 @@
                 return false;
             } else {
                 document.getElementById("addressPlease").innerHTML = "";
+            }
+
+
+            /////////////////////////////////dob validation part///////////////
+
+            var dob = document.getElementById("dob").value;
+
+            //empty validation
+            if (dob == "") {
+                document.getElementById("dobPlease").innerHTML = "**Fill the Date of Birth please!";
+                return false;
+            } else {
+                document.getElementById("dobPlease").innerHTML = "";
+            }
+
+
+
+
+            /////////////////////////////////religions validation part///////////////
+
+            var religions = document.getElementById("religions").value;
+
+            //empty validation
+            if (religions == "") {
+                document.getElementById("religionsPlease").innerHTML = "**Fill the Religions please!";
+                return false;
+            } else {
+                document.getElementById("religionsPlease").innerHTML = "";
+            }
+
+
+
+            /////////////////////////////////phone_no validation part///////////////
+
+            var phone_no = document.getElementById("phone_no").value;
+
+            //empty validation
+            if (phone_no == "") {
+                document.getElementById("phonePlease").innerHTML = "**Fill the Phone No please!";
+                return false;
+            }
+
+            if (phone_no.length < 10) {
+                document.getElementById("phonePlease").innerHTML = "**Phone No length must be atleast 10 Numbers";
+                return false;
+            }
+
+            if (phone_no.length > 10) {
+                document.getElementById("phonePlease").innerHTML = "**Phone No length must not exceed 10 Numbers";
+                return false;
+            } else {
+                document.getElementById("phonePlease").innerHTML = "";
+            }
+
+
+
+            /////////////////////////////////date_of_registered validation part///////////////
+
+            var date_of_registered = document.getElementById("date_of_registered").value;
+
+            //empty validation
+            if (date_of_registered == "") {
+                document.getElementById("datePlease").innerHTML = "**Fill the Register Date please!";
+                return false;
+            } else {
+                document.getElementById("datePlease").innerHTML = "";
             }
         }
     </script>
