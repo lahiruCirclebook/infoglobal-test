@@ -29,4 +29,63 @@ class CustomerClass
             return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
         }
     }
+
+    public function getCustomer()
+    {
+        try {
+            $data = $this->customer->getCustomer();
+            if (isset($data) && !empty($data)) {
+                return response()->json(['status' => true, 'message' => 'customer get success', 'data' => $data])->setStatusCode(200);
+            }
+            return response()->json(['status' => false, 'message' => 'error while get customer'])->setStatusCode(400);
+        } catch (\Exception $ex) {
+
+            return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+        }
+    }
+
+
+    public function getSingleCustomer($id)
+    {
+        try {
+            $data = $this->customer->getSingleCustomer($id);
+            if (isset($data) && !empty($data)) {
+                return response()->json(['status' => true, 'message' => 'Customer get success', 'data' => $data])->setStatusCode(200);
+            }
+            return response()->json(['status' => false, 'message' => 'error while get Customer'])->setStatusCode(400);
+        } catch (\Exception $ex) {
+            return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+        }
+    }
+
+    public function updateCustomer($id, $nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered)
+    {
+
+        try {
+            $updateCustomer = $this->customer->updateCustomer($id, $nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered);
+            if ($updateCustomer) {
+
+                return response()->json(['status' => true, 'message' => 'customer update success'])->setStatusCode(200);
+            }
+            return response()->json(['status' => false, 'message' => 'error while update customer'])->setStatusCode(400);
+        } catch (\Exception $ex) {
+
+            return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+        }
+    }
+
+    public function deleteCustomer($id)
+    {
+
+        try {
+            $data = $this->customer->deleteCustomer($id);
+            if ($data) {
+                return response()->json(['status' => true, 'message' => 'customer delete success'])->setStatusCode(200);
+            }
+            return response()->json(['status' => false, 'message' => 'error while delete customer'])->setStatusCode(400);
+        } catch (\Exception $ex) {
+
+            return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+        }
+    }
 }

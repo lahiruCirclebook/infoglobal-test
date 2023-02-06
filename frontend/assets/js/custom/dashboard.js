@@ -6,8 +6,8 @@ function Dashboard() {
         DashboardClient.get(DashboardClient.domainUrl()+"/get/customers")
             .then((response) => {
                 if (response.status === true){
-                   console.log(response.customer);
-                    $.each(response.customer, function (key,val){
+                   console.log(response.data);
+                    $.each(response.data, function (key,val){
                       
                         $("#projectData").append(`
                             <tr>
@@ -83,7 +83,7 @@ function Dashboard() {
                 }
             })
             .catch((error) => {
-                toastr.error(error.responseJSON.message, "error", DashboardHelper.toastOption());
+                //toastr.error(error.responseJSON.message, "error", DashboardHelper.toastOption());
             })
     };
 

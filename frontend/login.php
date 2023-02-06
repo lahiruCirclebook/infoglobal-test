@@ -175,13 +175,15 @@
                     <div class="">
 
                         <div class="card-body">
-                            <form id="login">
+                            <form id="login" onsubmit="return verifyLogin()">
                                 <br><br>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Email ID" name="email">
+                                    <input type="text" class="form-control" placeholder="Email ID" name="email" id="email">
+                                    <div id="emailPlease" style="color:red"></div>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Password" name="password">
+                                    <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+                                    <div id="passwordPlease" style="color:red"></div>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary w-100 my-4 mb-2">Login Now</button>
@@ -199,6 +201,34 @@
             </div>
         </div>
     </section>
+
+
+    <script>
+        function verifyLogin() {
+
+            var email = document.getElementById("email").value;
+
+            //empty validation
+            if (email == "") {
+                document.getElementById("emailPlease").innerHTML = "**Fill the Email please!";
+                return false;
+            } else {
+                document.getElementById("emailPlease").innerHTML = "";
+            }
+
+            var password = document.getElementById("password").value;
+
+            //empty validation
+            if (password == "") {
+                document.getElementById("passwordPlease").innerHTML = "**Fill the Password please!";
+                return false;
+            } else {
+                document.getElementById("passwordPlease").innerHTML = "";
+            }
+        }
+    </script>
+
+
     <script src="assets/js/plugins/jquery.js"></script>
     <script src="assets/js/plugins/toastr.min.js"></script>
     <script src="assets/js/custom/dashboard-client.js"></script>

@@ -11,10 +11,44 @@ use Illuminate\Support\Facades\Log;
 class Customer extends Model
 {
 
-    use HasFactory;
+    //use HasFactory;
 
     protected $table = "customers";
     protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
+
+    public function getCustomer()
+    {
+        try {
+            $result = $this->all();
+            if (count($result) > 0) {
+                return $result;
+            }
+            return null;
+        } catch (QueryException $ex) {
+
+            return null;
+        }
+    }
+
+
+    public function getSingleCustomer($id)
+    {
+        try {
+            $result = $this->where('id', $id)->first();
+            if (isset($result) & !empty($result)) {
+                return $result;
+            }
+            return null;
+        } catch (\Exception $ex) {
+
+            return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+            return null;
+        }
+    }
+
 
     public function addCustomer($nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered)
     {
@@ -43,11 +77,10 @@ class Customer extends Model
     public function updateCustomer($id, $nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered)
     {
         try {
-            $sqlQuery = $this->newQuery();
 
-            $sqlQuery->where('id', $id);
-            $sqlQuery->update(['nic' => $nic, 'full_name' => $full_name, 'address' => $address, 'dob' => $dob, 'religions' => $religions, 'phone_no' => $phone_no, 'date_of_registered' => $date_of_registered]);
-            if ($sqlQuery) {
+            $result = $this->where('id', $id)
+                ->update(['nic' => $nic, 'full_name' => $full_name, 'address' => $address, 'dob' => $dob, 'religions' => $religions, 'phone_no' => $phone_no, 'date_of_registered' => $date_of_registered]);
+            if ($result) {
                 return true;
             }
             return false;
@@ -68,6 +101,52 @@ class Customer extends Model
         } catch (QueryException $ex) {
 
             return false;
+        }
+    }
+
+
+    public function getBuddhistReligion()
+    {
+        try {
+            $result = $this->where('religions', '=', 'buddhist')
+                ->count();
+            if ($result > 0) {
+                return $result;
+            }
+            return 0;
+        } catch (QueryException $ex) {
+
+            return 0;
+        }
+    }
+
+    public function getHinduReligion()
+    {
+        try {
+            $result = $this->where('religions', '=', 'hindu')
+                ->count();
+            if ($result > 0) {
+                return $result;
+            }
+            return 0;
+        } catch (QueryException $ex) {
+
+            return 0;
+        }
+    }
+
+    public function getCristianReligion()
+    {
+        try {
+            $result = $this->where('religions', '=', 'cristian')
+                ->count();
+            if ($result > 0) {
+                return $result;
+            }
+            return 0;
+        } catch (QueryException $ex) {
+
+            return 0;
         }
     }
 }
