@@ -100,4 +100,10 @@ class CustomerController extends Controller
     {
         return $this->customerManager->deleteCustomer($id);
     }
+
+
+    public function getDashboard()
+    {
+        return $this->customerManager->getDashboard();
+    }
 }

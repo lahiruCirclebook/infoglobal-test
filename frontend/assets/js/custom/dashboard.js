@@ -7,7 +7,10 @@ function Dashboard() {
             .then((response) => {
                 if (response.status === true){
                    console.log(response.data);
-                    $.each(response.data, function (key,val){
+                   $("#buddhist").html(response.data.buddhist)
+                   $("#hindu").html(response.data.hindu)
+                   $("#cristian").html(response.data.cristian)
+                    $.each(response.data.customer, function (key,val){
                       
                         $("#projectData").append(`
                             <tr>

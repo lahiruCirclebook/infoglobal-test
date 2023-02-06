@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,7 +42,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'auth:api'], function () {
 });
 
 
-Route::get('/get/customers', [CustomerController::class, 'getCustomer']);
+Route::get('/get/customers', [CustomerController::class, 'getDashboard']);
 Route::get('/get/customers/{id}', [CustomerController::class, 'getSingleCustomer']);
 Route::put('/update/customer', [CustomerController::class, 'updateCustomer']);
 Route::delete('/delete/customer/{id}', [CustomerController::class, 'deleteCustomer']);

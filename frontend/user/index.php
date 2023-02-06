@@ -70,7 +70,7 @@
             </div>
         </nav>
         <!-- End Navbar -->
-        <div class="container py-4">
+        <div class="container py-2">
 
             <div class="row">
                 <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
@@ -123,7 +123,15 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Customers in Religions</p>
                                         <h5 class="font-weight-bolder mb-0">
-                                            <span id="total_complete_project">0</span>
+                                            <span>
+                                                <p>buddhist: <span id="buddhist"></span> </p>
+                                            </span>
+                                            <span>
+                                                <p>hindu: <span id="hindu"></span> </p>
+                                            </span>
+                                            <span>
+                                                <p>cristian: <span id="cristian"></span> </p>
+                                            </span>
                                         </h5>
                                     </div>
                                 </div>

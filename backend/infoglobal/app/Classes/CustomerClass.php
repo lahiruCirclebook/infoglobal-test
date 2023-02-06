@@ -30,7 +30,7 @@ class CustomerClass
         }
     }
 
-    public function getCustomer()
+    /* public function getCustomer()
     {
         try {
             $data = $this->customer->getCustomer();
@@ -42,7 +42,7 @@ class CustomerClass
 
             return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
         }
-    }
+    }*/
 
 
     public function getSingleCustomer($id)
@@ -86,6 +86,34 @@ class CustomerClass
         } catch (\Exception $ex) {
 
             return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
+        }
+    }
+
+
+    public function getDashboard()
+    {
+        try {
+            $data = [];
+
+            $getCustomer = $this->customer->getCustomer();
+            $getBuddhistReligion = $this->customer->getBuddhistReligion();
+            $getHinduReligion = $this->customer->getHinduReligion();
+            $getCristianReligion = $this->customer->getCristianReligion();
+
+
+            $data["customer"] = $getCustomer;
+            $data["buddhist"] = $getBuddhistReligion;
+            $data["hindu"] = $getHinduReligion;
+            $data["cristian"] = $getCristianReligion;
+
+
+            if (isset($data) && !empty($data)) {
+                return response()->json(["status" => true, "message" => "dashboard Data Get Success", "data" => $data])->setStatusCode(200);
+            }
+            return response()->json(["status" => true, "message" => "error while get dashboard data"])->setStatusCode(400);
+        } catch (\Exception $ex) {
+
+            return response()->json(["status" => false, "message" => "internal server Error"])->setStatusCode(500);
         }
     }
 }
