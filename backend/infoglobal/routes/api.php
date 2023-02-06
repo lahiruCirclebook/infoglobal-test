@@ -41,4 +41,7 @@ Route::group(['prefix' => '/v1', 'middleware' => 'auth:api'], function () {
 });
 
 
-Route::get('/get/customers',[CustomerController::class, 'getCustomer']);
+Route::get('/get/customers', [CustomerController::class, 'getCustomer']);
+Route::get('/get/customers/{id}', [CustomerController::class, 'getSingleCustomer']);
+Route::put('/update/customer', [CustomerController::class, 'updateCustomer']);
+Route::delete('/delete/customer/{id}', [CustomerController::class, 'deleteCustomer']);

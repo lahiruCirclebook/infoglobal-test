@@ -25,7 +25,7 @@
     }
 
     body {
-        background-color: #080710;
+        background-color: #00425A;
     }
 
     .background {
@@ -72,7 +72,7 @@
         border: 2px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
         padding: 50px 35px;
-       
+
     }
 
     form * {
@@ -164,8 +164,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 text-center mx-auto">
-                        <h1 class="text-black mb-2 mt-5">Welcome Back!</h1>
-                        <p class="text-lead text-black">Login Your Account.</p>
+
                     </div>
                 </div>
             </div>
@@ -174,7 +173,7 @@
             <div class="row mt-lg-n10 mt-md-n11 mt-n10">
                 <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
                     <div class="">
-                       
+
                         <div class="card-body">
                             <form id="login">
                                 <br><br>
@@ -188,7 +187,9 @@
                                     <button type="submit" class="btn btn-primary w-100 my-4 mb-2">Login Now</button>
                                 </div>
                                 <center>
-                                    <p class="text-sm mt-3 mb-0">Create New Account? <a href="register.php" class="text-white font-weight-bolder"><p>Register</p></a></p>
+                                    <p class="text-sm mt-3 mb-0">Create New Account? <a href="register.php" class="text-white font-weight-bolder">
+                                            <p>Register</p>
+                                        </a></p>
                                 </center>
 
                             </form>

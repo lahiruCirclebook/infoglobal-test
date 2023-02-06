@@ -32,7 +32,7 @@
 
 </head>
 
-<body><br><br>
+<body style="background-color: #8EA7E9;"><br><br>
 
     <section class="min-vh-100 mb-8">
         <div class="container">
@@ -56,7 +56,7 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Logout</span>
+                    <span class="nav-link-text ms-1"><b>Logout</b></span>
                 </a>
             </li>
 

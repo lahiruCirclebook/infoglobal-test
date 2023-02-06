@@ -30,6 +30,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <link href="../assets/css/toastr.css" rel="stylesheet" />
+
+    <link href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -139,45 +141,122 @@
 
 
             <div class="row my-4">
-            <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <div class="row">
-                            <div class="col-lg-6 col-7">
-                                <h6>Projects</h6>
+                <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <div class="row">
+                                <div class="col-lg-6 col-7">
+                                    <h6>Projects</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body px-0 pb-2">
-                        <div class="table-responsive">
-                            <table class="table align-items-center justify-content-center mb-0">
-                                <thead>
-                                <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">User Responsible</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Status</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Create At</th>
-                                </tr>
-                                </thead>
-                                <tbody id="projectData">
+                        <div class="card-body px-0 pb-2">
+                            <div class="table-responsive">
+                                <table class="table align-items-center justify-content-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NIC</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Full Name</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Address</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Date of Birth</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Religions</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Phone No</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Register Date</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="projectData">
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         </div>
     </main>
+
+
+
+    <!--Edit Modal-->
+    <div class="modal fade" id="editProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="updateProjectForm">
+                    <div class="modal-body">
+                        <div class="mb-3 form-field error success">
+                            <label for="nic">NIC:</label>
+                            <input type="text" class="form-control" name="nic" id="nic" isRequired>
+                            <small></small>
+                        </div>
+                        <div class="mb-3 form-field error success">
+                            <label for="full_name">Full Name:</label>
+                            <textarea class="form-control" type="text" name="full_name" cols="10" rows="2" id="full_name" isRequired></textarea>
+                            <small></small>
+                        </div>
+                        <div class="mb-3 form-field error success">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" type="text" name="address" cols="10" rows="2" id="address" isRequired></textarea>
+                            <small></small>
+                        </div>
+
+                        <div class="mb-3 form-field error success">
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" class="form-control" name="dob" id="dob" isRequired>
+                            <small></small>
+                        </div>
+                        <div class="mb-3 form-field error success">
+                            <label for="religions">Religions:</label>
+                            <input type="text" class="form-control" name="religions" id="religions" isRequired>
+                            <small></small>
+                        </div>
+                        <div class="mb-3 form-field error success">
+                            <label for="phone_no">Phone No:</label>
+                            <input type="text" class="form-control" name="phone_no" id="phone_no" isRequired>
+                            <small></small>
+                        </div>
+
+                        <div class="mb-3 form-field error success">
+                            <label for="date_of_registered">Date of Register:</label>
+                            <input type="date" class="form-control" name="date_of_registered" id="date_of_registered" isRequired>
+                            <small></small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_2">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <?php include "../include/js.php" ?>
     <script src="../assets/js/plugins/jquery.js"></script>
     <script src="../assets/js/plugins/toastr.min.js"></script>
     <script src="../assets/js/custom/dashboard-client.js"></script>
     <script src="../assets/js/custom/dashboard.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                pagingType: 'full_numbers',
+            });
+        });
+    </script>
 </body>
 
 </html>
