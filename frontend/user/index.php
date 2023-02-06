@@ -123,15 +123,9 @@
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-capitalize font-weight-bold">Customers in Religions</p>
                                         <h5 class="font-weight-bolder mb-0">
-                                            <span>
-                                                <p>buddhist: <span id="buddhist"></span> </p>
-                                            </span>
-                                            <span>
-                                                <p>hindu: <span id="hindu"></span> </p>
-                                            </span>
-                                            <span>
-                                                <p>cristian: <span id="cristian"></span> </p>
-                                            </span>
+                                            <p>buddhist: <span id="buddhist"></span> </p>
+                                            <p>hindu: <span id="hindu"></span> </p>
+                                            <p>cristian: <span id="cristian"></span> </p>
                                         </h5>
                                     </div>
                                 </div>
