@@ -8,59 +8,38 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Classes\UserClass;
 
 class AuthController extends Controller
 {
+
+    private $authManager;
+    public function __construct(UserClass $userClass)
+    {
+        $this->authManager = $userClass;
+    }
 
 
     //register
     public function register(Request $request)
     {
-        try {
-
-            $validator = Validator::make($request->all(), [
-                'name' => 'required|string',
-                'email' => 'required|email',
-                'password' => 'required|min:8',
-            ], [
-                'name.required' => 'Name Filed is Required',
-                'email.required' => 'Email Filed is Required',
-                'password.required' => 'Password Filed is Required',
-            ]);
-
-            if ($validator->fails()) {
-
-                $error = $validator->errors()->first();
-
-                return response()->json(['status' => false, 'message' => $error])->setStatusCode(400);
-            }
-
-            if (User::where('email', '=', $request->email)->exists()) {
-                return response()->json(['status' => false, 'message' => 'User already exists'])->setStatusCode(400);
-            }
-
-            $user = new User;
-
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-
-            return $user->save();
-
-            if ($user) {
-                $userDetail = array();
-                $userDetail['email'] = $request->email;
-                $userDetail['password'] = $request->password;
-                Auth::attempt($userDetail);
-                $token = Auth::user()->createToken('authToken')->accessToken;
-                if ($token) {
-                    return response()->json(['status' => true, 'message' => "user register success!", "token" => $token])->setStatusCode(200);
-                }
-            }
-            return response()->json(['status' => false, 'message' => "error while register user!"])->setStatusCode(400);
-        } catch (\Exception $exception) {
-            return response()->json(['status' => false, 'message' => 'public.internal_server_error'])->setStatusCode(500);
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ], [
+            'name.required' => 'Name Filed is Required',
+            'email.required' => 'Email Filed is Required',
+            'password.required' => 'Password Filed is Required',
+        ]);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json(['status' => false, 'message' => $error])->setStatusCode(400);
         }
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+        return $this->authManager->register($name, $email, $password);
     }
 
 

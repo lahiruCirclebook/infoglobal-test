@@ -16,6 +16,29 @@ class Customer extends Model
     protected $table = "customers";
     protected $primaryKey = 'id';
 
+    public function addCustomer($nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered)
+    {
+        try {
+            $this->nic = $nic;
+            $this->full_name = $full_name;
+            $this->address = $address;
+            $this->dob = $dob;
+            $this->religions = $religions;
+            $this->phone_no = $phone_no;
+            $this->date_of_registered = $date_of_registered;
+
+            if ($this->save()) {
+                return true;
+            }
+
+            return false;
+        } catch (QueryException $ex) {
+            //Log::info("ProjectModel Error", ["addCustomer" => $ex->getMessage(), "line" => $ex->getLine()]);
+            return false;
+        }
+    }
+
+
 
     public function updateCustomer($id, $nic, $full_name, $address, $dob, $religions, $phone_no, $date_of_registered)
     {

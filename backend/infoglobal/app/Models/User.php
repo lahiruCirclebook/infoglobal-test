@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 
 
 class User extends Authenticatable
@@ -46,4 +48,37 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+    public function checkUser($email)
+    {
+        try {
+            $result = $this->where("email", $email)->first();
+            if ($result) {
+                return true;
+            }
+            return false;
+        } catch (QueryException $ex) {
+            Log::info("UserModel Error", ["register" => $ex->getMessage(), "line" => $ex->getLine()]);
+            return false;
+        }
+    }
+
+
+    public function register($name, $email, $password)
+    {
+        try {
+            $this->name = $name;
+            $this->email = $email;
+            $this->password = $password;
+            if ($this->save()) {
+                return true;
+            }
+            return false;
+        } catch (QueryException $ex) {
+            Log::info("UserModel Error", ["register" => $ex->getMessage(), "line" => $ex->getLine()]);
+            return false;
+        }
+    }
 }

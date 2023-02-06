@@ -111,7 +111,7 @@ function Dashboard() {
             .then((response) => {
                 if (response.status === true) {
                     toastr.info(response.message, "info", DashboardHelper.toastOption());
-                    (new Dashboard()).getDashboard();
+                  
                     
                 }
             })
