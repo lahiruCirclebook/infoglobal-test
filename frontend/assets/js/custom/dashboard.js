@@ -2,6 +2,7 @@
 (new Dashboard()).getDashboard();
 function Dashboard() {
     this.getDashboard = () => {
+        $("#projectData").html('')
         DashboardClient.get(DashboardClient.domainUrl()+"/get/customers")
             .then((response) => {
                 if (response.status === true){
@@ -112,7 +113,7 @@ function Dashboard() {
                 if (response.status === true) {
                     toastr.info(response.message, "info", DashboardHelper.toastOption());
                   
-                    
+                    window.location.reload();
                 }
             })
             .catch((error) => {

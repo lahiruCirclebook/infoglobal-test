@@ -29,7 +29,7 @@ class CustomerController extends Controller
             'address' => 'required',
             'dob' => 'required',
             'religions' => 'required',
-            'phone_no' => 'required',
+            'phone_no' => 'required|uniq|max:10',
             'date_of_registered' => 'required',
         ]);
         if ($validator->fails()) {
