@@ -25,7 +25,7 @@ class CustomerClass
             }
             return response()->json(['status' => false, 'message' => 'error while add customer'])->setStatusCode(400);
         } catch (\Exception $ex) {
-
+            Log::info("CustomerClass Error", ["addCustomer" => $ex->getMessage(), "line" => $ex->getLine()]);
             return response()->json(['status' => false, 'message' => 'internal server error'])->setStatusCode(500);
         }
     }
